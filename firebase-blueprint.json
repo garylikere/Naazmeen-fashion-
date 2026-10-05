@@ -1,0 +1,87 @@
+{
+  "entities": {
+    "Product": {
+      "title": "Product",
+      "description": "Luxury handbag product with multi-color variations and inventory",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string", "maxLength": 128 },
+        "slug": { "type": "string", "maxLength": 128 },
+        "category": { "type": "string", "maxLength": 64 },
+        "price": { "type": "number" },
+        "salePrice": { "type": "number" },
+        "stock": { "type": "number" },
+        "sku": { "type": "string", "maxLength": 64 },
+        "featured": { "type": "boolean" },
+        "bestseller": { "type": "boolean" },
+        "newArrival": { "type": "boolean" },
+        "description": { "type": "string", "maxLength": 2048 },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "name", "slug", "category", "price", "stock", "sku"]
+    },
+    "Order": {
+      "title": "Order",
+      "description": "Customer purchase order including items, variations and shipping details",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "customerName": { "type": "string", "maxLength": 128 },
+        "customerEmail": { "type": "string", "maxLength": 128 },
+        "customerPhone": { "type": "string", "maxLength": 32 },
+        "subtotal": { "type": "number" },
+        "total": { "type": "number" },
+        "paymentMethod": { "type": "string", "maxLength": 64 },
+        "paymentStatus": { "type": "string", "maxLength": 32 },
+        "orderStatus": { "type": "string", "maxLength": 32 },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "customerName", "customerEmail", "customerPhone", "total", "paymentMethod", "orderStatus"]
+    },
+    "User": {
+      "title": "User",
+      "description": "Customer or administrator profile",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string", "maxLength": 128 },
+        "email": { "type": "string", "maxLength": 128 },
+        "role": { "type": "string", "enum": ["customer", "admin"] },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "name", "email", "role"]
+    },
+    "Category": {
+      "title": "Category",
+      "description": "Bags collection category",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string", "maxLength": 64 },
+        "active": { "type": "boolean" }
+      },
+      "required": ["id", "name"]
+    }
+  },
+  "firestore": {
+    "/products/{productId}": {
+      "schema": "Product",
+      "description": "Public collection of luxury handbag products, admin writable"
+    },
+    "/orders/{orderId}": {
+      "schema": "Order",
+      "description": "Orders created by customers, readable by creator and admin"
+    },
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profiles with role-based access"
+    },
+    "/categories/{categoryId}": {
+      "schema": "Category",
+      "description": "Public catalog categories"
+    }
+  }
+}

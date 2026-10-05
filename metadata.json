@@ -1,0 +1,6 @@
+{
+  "name": "Aurelia Atelier - Luxury Women's Handbags",
+  "description": "An exquisite collection of handcrafted women's luxury leather handbags, totes, clutches, and crossbody bags designed with timeless elegance and modern craft.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
